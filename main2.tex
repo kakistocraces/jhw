@@ -1,4 +1,4 @@
-% Created 2021-01-22 Fri 07:59
+% Created 2021-01-22 Fri 08:06
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -30,6 +30,10 @@
 \maketitle
 \tableofcontents
 
+
+
+\section{Importing packages os and csv}
+\label{sec:org45fe6c1}
 \begin{verbatim}
 import os
 import csv
@@ -41,6 +45,8 @@ import csv
 
 \end{verbatim}
 
+\section{Declaring dictionary lists}
+\label{sec:org5a2fec5}
 
 Here I am declaring dictionary lists to store the total votes and the percentages. Each candidate is the key for the dict file. The two dictionary lists are \texttt{totals} and \texttt{percentages} which will contain the total votes and the percentage of votes received for each candidate. 
 
@@ -55,7 +61,8 @@ percentages = {}
 
 \end{verbatim}
 
-
+\section{Initializing variables}
+\label{sec:orgfb0a185}
 For the four candidates Khan, O'Tooley, Li, and Correy, I am setting their total votes to 0. By setting the totals to 0, I am also declaring the variables. If you try to run the line \texttt{\texttt{totals["Khan"] = totals["Khan"] + 1}} you will get an error, unless the key has been initiated. 
 
 \begin{verbatim}
@@ -74,6 +81,8 @@ total_vote = 0
 
 \end{verbatim}
 
+\section{Reading the CSV file}
+\label{sec:org2c6f759}
 
 The following code opens election data csv file. Then each row is inputed into \texttt{csv\_reader} which is a \texttt{csv\_reader} object. You can think of it as an array of lists. Each list will contain a list of values that were separated by a comma. 
 
@@ -96,6 +105,10 @@ You cannot iterate through the \texttt{csv\_reader} object with brackets "\textt
 \texttt{for <variable name> in csv\_reader}. In this example, the variable name is \texttt{row}. 
 
 \begin{verbatim}
+with open(csvpath) as csvfile:
+    csv_reader = csv.reader(csvfile, delimiter = ",")
+    csv_header = next(csv_reader)
+
     for row in csv_reader:
 	total_vote = total_vote + 1
 	candidate = row[2]
@@ -108,5 +121,15 @@ You cannot iterate through the \texttt{csv\_reader} object with brackets "\textt
 	print(candidate, " Total = ", totals[candidate], " Percentage = ", percentages[candidate], "%")
 
 print("Winner = ", max(totals, key=totals.get))
+\end{verbatim}
+
+\begin{verbatim}
+Khan  Total =  1  Percentage =  100.0 %
+O'Tooley  Total =  0  Percentage =  0.0 %
+Li  Total =  0  Percentage =  0.0 %
+Correy  Total =  0  Percentage =  0.0 %
+Winner =  Khan
+
+
 \end{verbatim}
 \end{document}

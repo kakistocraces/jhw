@@ -3,21 +3,26 @@
 #+PROPERTY: header-args:python :exports both :results output :session 
 #+date: 01-21-21
 
+
+* Importing packages os and csv
 #+begin_src python :session :results output
 import os
 import csv
 #+end_src
 
+* Declaring dictionary lists 
+
 Here I am declaring dictionary lists to store the total votes and the percentages. Each candidate is the key for the dict file. The two dictionary lists are =totals= and =percentages= which will contain the total votes and the percentage of votes received for each candidate. 
 
-#+begin_src python 
+#+begin_src python :session :results output
 totals = {}
 percentages = {}
 #+end_src
 
+* Initializing variables 
 For the four candidates Khan, O'Tooley, Li, and Correy, I am setting their total votes to 0. By setting the totals to 0, I am also declaring the variables. If you try to run the line src_python[:exports code]{totals["Khan"] = totals["Khan"] + 1} you will get an error, unless the key has been initiated. 
 
-#+begin_src python
+#+begin_src python :session :results output
 
 totals["Khan"] = 0
 totals["O'Tooley"] = 0
@@ -27,14 +32,11 @@ total_vote = 0
 
 #+end_src
 
-#+RESULTS:
-: 
-: 
-: 
+* Reading the CSV file 
 
 The following code opens election data csv file. Then each row is inputed into =csv_reader= which is a =csv_reader= object. You can think of it as an array of lists. Each list will contain a list of values that were separated by a comma. 
 
-#+begin_src python 
+#+begin_src python :session :results output
 csvpath = os.path.join("/home/nikd/Dropbox/jhw","Resources", "election_data.csv")  
 
 with open(csvpath) as csvfile:
@@ -45,7 +47,11 @@ with open(csvpath) as csvfile:
 You cannot iterate through the =csv_reader= object with brackets "=[]=". With an array, you could get the first value of the array with the command =array_variable[0]=. This does not work with =csv_reader=. Instead you need to iterate through the values with a =for= loop. The command for this is 
 =for <variable name> in csv_reader=. In this example, the variable name is =row=. 
 
-#+begin_src 
+#+begin_src python :session :results output
+with open(csvpath) as csvfile:
+    csv_reader = csv.reader(csvfile, delimiter = ",")
+    csv_header = next(csv_reader)
+
     for row in csv_reader:
         total_vote = total_vote + 1
         candidate = row[2]
