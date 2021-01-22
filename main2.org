@@ -32,7 +32,7 @@ total_vote = 0
 : 
 : 
 
-The following code opens election data csv file. Then each row is inputed into =csv_reader= which is a csv_reader object. You can think of it as an array of lists. Each list will contain a list of values that were separated by a comma. 
+The following code opens election data csv file. Then each row is inputed into =csv_reader= which is a =csv_reader= object. You can think of it as an array of lists. Each list will contain a list of values that were separated by a comma. 
 
 #+begin_src python 
 csvpath = os.path.join("/home/nikd/Dropbox/jhw","Resources", "election_data.csv")  
@@ -40,7 +40,12 @@ csvpath = os.path.join("/home/nikd/Dropbox/jhw","Resources", "election_data.csv"
 with open(csvpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter = ",")
     csv_header = next(csv_reader)
+#+end_src
 
+You cannot iterate through the =csv_reader= object with brackets "=[]=". With an array, you could get the first value of the array with the command =array_variable[0]=. This does not work with =csv_reader=. Instead you need to iterate through the values with a =for= loop. The command for this is 
+=for <variable name> in csv_reader=. In this example, the variable name is =row=. 
+
+#+begin_src 
     for row in csv_reader:
         total_vote = total_vote + 1
         candidate = row[2]

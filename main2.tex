@@ -1,4 +1,4 @@
-% Created 2021-01-22 Fri 00:57
+% Created 2021-01-22 Fri 07:59
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -75,7 +75,7 @@ total_vote = 0
 \end{verbatim}
 
 
-The following code opens election data csv file. Then each row is inputed into \texttt{csv\_reader} which is a csv\textsubscript{reader} object. You can think of it as an array of lists. Each list will contain a list of values that were separated by a comma. 
+The following code opens election data csv file. Then each row is inputed into \texttt{csv\_reader} which is a \texttt{csv\_reader} object. You can think of it as an array of lists. Each list will contain a list of values that were separated by a comma. 
 
 \begin{verbatim}
 csvpath = os.path.join("/home/nikd/Dropbox/jhw","Resources", "election_data.csv")  
@@ -83,7 +83,19 @@ csvpath = os.path.join("/home/nikd/Dropbox/jhw","Resources", "election_data.csv"
 with open(csvpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter = ",")
     csv_header = next(csv_reader)
+\end{verbatim}
 
+\begin{verbatim}
+
+
+
+\end{verbatim}
+
+
+You cannot iterate through the \texttt{csv\_reader} object with brackets "\texttt{[]}". With an array, you could get the first value of the array with the command \texttt{array\_variable[0]}. This does not work with \texttt{csv\_reader}. Instead you need to iterate through the values with a \texttt{for} loop. The command for this is 
+\texttt{for <variable name> in csv\_reader}. In this example, the variable name is \texttt{row}. 
+
+\begin{verbatim}
     for row in csv_reader:
 	total_vote = total_vote + 1
 	candidate = row[2]
@@ -96,15 +108,5 @@ with open(csvpath) as csvfile:
 	print(candidate, " Total = ", totals[candidate], " Percentage = ", percentages[candidate], "%")
 
 print("Winner = ", max(totals, key=totals.get))
-\end{verbatim}
-
-\begin{verbatim}
-Khan  Total =  1  Percentage =  100.0 %
-O'Tooley  Total =  0  Percentage =  0.0 %
-Li  Total =  0  Percentage =  0.0 %
-Correy  Total =  0  Percentage =  0.0 %
-Winner =  Khan
-
-
 \end{verbatim}
 \end{document}
