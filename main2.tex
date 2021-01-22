@@ -1,0 +1,87 @@
+% Created 2021-01-21 Thu 22:49
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\author{Nikhil Dhawan, MD}
+\date{09-26-20}
+\title{Financial Plan}
+\hypersetup{
+ pdfauthor={Nikhil Dhawan, MD},
+ pdftitle={Financial Plan},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.3)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\begin{verbatim}
+import os
+import csv
+\end{verbatim}
+
+\begin{verbatim}
+
+
+
+\end{verbatim}
+
+
+Here I am declaring dictionary lists to store the total votes and the percentages. Each candidate is the key for the dict file. 
+
+\begin{verbatim}
+totals = {}
+percentages = {}
+break_line = "------------------------------"
+
+csvpath = os.path.join(".", "Resources", "election_data.csv")  
+
+totals["Khan"] = 0
+totals["O'Tooley"] = 0
+totals["Li"] = 0
+totals["Correy"] = 0
+total_vote = 0
+
+with open(csvpath) as csvfile:
+    csv_reader = csv.reader(csvfile, delimiter = ",")
+    csv_header = next(csv_reader)
+
+    for row in csv_reader:
+	total_vote = total_vote + 1
+	candidate = row[2]
+	totals[candidate] += 1
+
+    for candidate in totals:
+	percentages[candidate] = totals[candidate] / total_vote * 100
+
+    for candidate in totals:
+	print(candidate, " Total = ", totals[candidate], " Percentage = ", percentages[candidate], "%")
+
+print("Winner = ", max(totals, key=totals.get))
+\end{verbatim}
+
+\begin{verbatim}
+Khan  Total =  2218231  Percentage =  63.00001050837531 %
+O'Tooley  Total =  105630  Percentage =  2.999999147969569 %
+Li  Total =  492940  Percentage =  13.999996023857989 %
+Correy  Total =  704200  Percentage =  19.999994319797125 %
+Winner =  Khan
+
+
+\end{verbatim}
+\end{document}
