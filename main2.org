@@ -26,7 +26,7 @@ total_vote = 0
 
 #+end_src
 
-The following code opens election data csv file. Then each row is inputed into csv_reader as an array of lists. Each list will contain a list of values that were separated by a comma. 
+The following code opens election data csv file. Then each row is inputed into =csv_reader= as an array of lists. Each list will contain a list of values that were separated by a comma. 
 
 #+begin_src python 
 csvpath = os.path.join(".", "Resources", "election_data.csv")  
