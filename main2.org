@@ -18,6 +18,7 @@ percentages = {}
 For the four candidates Khan, O'Tooley, Li, and Correy, I am setting their total votes to 0. By setting the totals to 0, I am also declaring the variables. If you try to run the line src_python[:exports code]{totals["Khan"] = totals["Khan"] + 1} you will get an error, unless the key has been initiated. 
 
 #+begin_src python
+
 totals["Khan"] = 0
 totals["O'Tooley"] = 0
 totals["Li"] = 0
@@ -26,16 +27,19 @@ total_vote = 0
 
 #+end_src
 
-The following code opens election data csv file. Then each row is inputed into =csv_reader= as an array of lists. Each list will contain a list of values that were separated by a comma. 
+#+RESULTS:
+: 
+: 
+: 
+
+The following code opens election data csv file. Then each row is inputed into =csv_reader= which is a csv_reader object. You can think of it as an array of lists. Each list will contain a list of values that were separated by a comma. 
 
 #+begin_src python 
-csvpath = os.path.join(".", "Resources", "election_data.csv")  
+csvpath = os.path.join("/home/nikd/Dropbox/jhw","Resources", "election_data.csv")  
 
 with open(csvpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter = ",")
-
     csv_header = next(csv_reader)
-    print(csv_reader[2])
 
     for row in csv_reader:
         total_vote = total_vote + 1
@@ -52,8 +56,11 @@ print("Winner = ", max(totals, key=totals.get))
 #+end_src
 
 #+RESULTS:
-: Khan  Total =  2218231  Percentage =  63.00001050837531 %
-: O'Tooley  Total =  105630  Percentage =  2.999999147969569 %
-: Li  Total =  492940  Percentage =  13.999996023857989 %
-: Correy  Total =  704200  Percentage =  19.999994319797125 %
+: <class '_csv.reader'>
+: Khan  Total =  3  Percentage =  100.0 %
+: O'Tooley  Total =  0  Percentage =  0.0 %
+: Li  Total =  0  Percentage =  0.0 %
+: Correy  Total =  0  Percentage =  0.0 %
 : Winner =  Khan
+: 
+: 

@@ -1,4 +1,4 @@
-% Created 2021-01-22 Fri 00:35
+% Created 2021-01-22 Fri 00:45
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -74,14 +74,14 @@ total_vote = 0
 \end{verbatim}
 
 
-The following code opens election data csv file. Then each row is inputed into csv\textsubscript{reader} as an array of lists. Each list will contain a list of values that were separated by a comma. 
+The following code opens election data csv file. Then each row is inputed into \texttt{csv\_reader} as an array of lists. Each list will contain a list of values that were separated by a comma. 
 
 \begin{verbatim}
-csvpath = os.path.join(".", "Resources", "election_data.csv")  
+csvpath = os.path.join("Resources", "election_data.csv")  
 
 with open(csvpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter = ",")
-
+    print(csv_reader)
     csv_header = next(csv_reader)
     print(csv_reader[2])
 
@@ -102,9 +102,9 @@ print("Winner = ", max(totals, key=totals.get))
 \begin{verbatim}
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-  File "/tmp/babel-veuMxg/python-MgYwXP", line 3, in <module>
+  File "/tmp/babel-veuMxg/python-xzvkJH", line 3, in <module>
     with open(csvpath) as csvfile:
-FileNotFoundError: [Errno 2] No such file or directory: './Resources/election_data.csv'
+FileNotFoundError: [Errno 2] No such file or directory: 'Resources/election_data.csv'
 
 
 \end{verbatim}
