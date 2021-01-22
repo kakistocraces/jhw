@@ -1,4 +1,4 @@
-% Created 2021-01-22 Fri 00:17
+% Created 2021-01-22 Fri 00:35
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -42,24 +42,48 @@ import csv
 \end{verbatim}
 
 
-Here I am declaring dictionary lists to store the total votes and the percentages. Each candidate is the key for the dict file. 
+Here I am declaring dictionary lists to store the total votes and the percentages. Each candidate is the key for the dict file. The two dictionary lists are \texttt{totals} and \texttt{percentages} which will contain the total votes and the percentage of votes received for each candidate. 
 
 \begin{verbatim}
 totals = {}
 percentages = {}
-break_line = "------------------------------"
+\end{verbatim}
 
-csvpath = os.path.join(".", "Resources", "election_data.csv")  
+\begin{verbatim}
 
+
+
+\end{verbatim}
+
+
+For the four candidates Khan, O'Tooley, Li, and Correy, I am setting their total votes to 0. By setting the totals to 0, I am also declaring the variables. If you try to run the line \texttt{\texttt{totals["Khan"] = totals["Khan"] + 1}} you will get an error, unless the key has been initiated. 
+
+\begin{verbatim}
 totals["Khan"] = 0
 totals["O'Tooley"] = 0
 totals["Li"] = 0
 totals["Correy"] = 0
 total_vote = 0
 
+\end{verbatim}
+
+\begin{verbatim}
+
+
+
+\end{verbatim}
+
+
+The following code opens election data csv file. Then each row is inputed into csv\textsubscript{reader} as an array of lists. Each list will contain a list of values that were separated by a comma. 
+
+\begin{verbatim}
+csvpath = os.path.join(".", "Resources", "election_data.csv")  
+
 with open(csvpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter = ",")
+
     csv_header = next(csv_reader)
+    print(csv_reader[2])
 
     for row in csv_reader:
 	total_vote = total_vote + 1
@@ -78,7 +102,7 @@ print("Winner = ", max(totals, key=totals.get))
 \begin{verbatim}
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-  File "/tmp/babel-veuMxg/python-nKG9zK", line 13, in <module>
+  File "/tmp/babel-veuMxg/python-MgYwXP", line 3, in <module>
     with open(csvpath) as csvfile:
 FileNotFoundError: [Errno 2] No such file or directory: './Resources/election_data.csv'
 
